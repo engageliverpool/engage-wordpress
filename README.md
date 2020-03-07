@@ -38,3 +38,17 @@ Or set them to rebuild automatically when changed:
 You will need [Sass](https://sass-lang.com/) installed. For example, on a Mac with [Homebrew](https://brew.sh/), you might run:
 
     brew install sass/sass/sass
+
+## Dealing with compiled CSS
+
+The `engage-theme` directory includes compiled CSS, to make the theme immediately usable as a valid WordPress theme, without having to compile the styles first.
+
+However, this means that some care must be taken over how the CSS files are managed with Git.
+
+The repo includes a `.gitattributes` file that treats compiled CSS files as binary files, and specifies merge settings that should avoid conflicts while merging or rebasing [(all following the guidance here)](https://blog.andrewray.me/dealing-with-compiled-files-in-git/), but some manual configuration is still required on each clone of the repo.
+
+For this reason, you should run `bin/git-config` after cloning this repo, to set up the custom merge driver, pre-rebase hook, and pre-commit hook:
+
+    git clone [this repo name]
+    cd [this repo]
+    bin/git-config
