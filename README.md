@@ -52,3 +52,14 @@ For this reason, you should run `bin/git-config` after cloning this repo, to set
     git clone [this repo name]
     cd [this repo]
     bin/git-config
+
+## Coding standards
+
+Be a good citizen by following these standards when working on this project:
+
+* Use a 4 space indent for HTML, CSS, JavaScript, and Sass files.
+* While HTML markup in PHP templates should use a 4 space indent, try to place PHP block tags (like `if` statements, etc) on a 2 space indent, where sensible. This helps maintain readability for loops and conditional blocks.
+* Use the full `<?php` opening tag, rather than the `<?` and `<?=` shorthand tags.
+* PHP files should _not_ end with `?>`.
+
+Otherwise, where there’s doubt, follow the [WordPress core coding standards](https://codex.wordpress.org/WordPress_Coding_Standards) for PHP, HTML, and CSS.
