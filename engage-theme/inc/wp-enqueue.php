@@ -2,6 +2,12 @@
 
 function enqueue_frontend_stylesheet() {
     wp_enqueue_style(
+        'google-fonts',
+        'https://fonts.googleapis.com/css2?family=Quicksand:ital,wght@0,500;0,700;1,500;1,700&display=swap',
+        array(),
+        null
+    );
+    wp_enqueue_style(
         'engage-frontend-style',
         get_theme_file_uri( 'assets/css/frontend-style.css' ),
         array(),
@@ -32,6 +38,12 @@ function enqueue_frontend_scripts() {
 add_action( 'wp_enqueue_scripts', 'enqueue_frontend_scripts' );
 
 function enqueue_admin_stylesheet() {
+    wp_enqueue_style(
+        'google-fonts',
+        'https://fonts.googleapis.com/css2?family=Quicksand:ital,wght@0,500;0,700;1,500;1,700&display=swap',
+        array(),
+        null
+    );
     wp_enqueue_style(
         'engage-admin-style',
         get_theme_file_uri( 'assets/css/admin-style.css' ),
