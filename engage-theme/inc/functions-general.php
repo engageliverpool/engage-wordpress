@@ -20,6 +20,35 @@ function get_posts_page_title() {
 }
 
 
+function get_site_logo() {
+    $site_logo_html = '';
+    $custom_logo_id = get_theme_mod( 'custom_logo' );
+
+    if ( $custom_logo_id ) {
+        $custom_logo_attr = array(
+            'class' => 'site-logo site-logo--custom',
+        );
+
+        // If the logo alt attribute is empty, get the site title and explicitly
+        // pass it to the attributes used by wp_get_attachment_image().
+        $image_alt = get_post_meta( $custom_logo_id, '_wp_attachment_image_alt', true );
+        if ( empty( $image_alt ) ) {
+            $custom_logo_attr['alt'] = get_bloginfo( 'name', 'display' );
+        }
+
+        $site_logo_html = wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr );
+
+    } else {
+        $site_logo_html = sprintf(
+            '<span class="site-logo site-logo--default">%1$s</span>',
+            get_bloginfo( 'name', 'display' )
+        );
+    }
+
+    return $site_logo_html;
+}
+
+
 // Record the current template name when including a template.
 // (Handy for debugging which templates are being rendered!)
 function record_current_template( $template ) {

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+contains() { [ -z "$1" ] || { [ -z "${2##*$1*}" ] && [ -n "$2" ]; }; }
+
+MENUS=$(wp menu list --format="csv" --fields="name")
+
+if contains "Primary links" "$MENUS"; then
+    wp menu delete "Primary links" --quiet
+fi
+wp menu create "Primary links"
+wp menu item add-custom "Primary links" "News" "#"
+wp menu item add-custom "Primary links" "Events" "#"
+wp menu item add-custom "Primary links" "Projects" "#"
+wp menu item add-custom "Primary links" "Seminars" "#"
+wp menu location assign "Primary links" "location-header"
+
+if contains "Secondary links" "$MENUS"; then
+    wp menu delete "Secondary links" --quiet
+fi
+wp menu create "Secondary links"
+wp menu item add-custom "Secondary links" "About" "#"
+wp menu item add-custom "Secondary links" "Contact" "#"
+wp menu item add-custom "Secondary links" "Resources" "#"
+wp menu item add-custom "Secondary links" "Grapevine" "#"
+wp menu location assign "Secondary links" "location-top"
+
+if contains "Social links" "$MENUS"; then
+    wp menu delete "Social links" --quiet
+fi
+wp menu create "Social links"
+wp menu item add-custom "Social links" "Twitter" "https://twitter.com/EngageLiverpool"
+wp menu item add-custom "Social links" "Facebook" "https://www.facebook.com/EngageLiverpoolCIC"
+wp menu item add-custom "Social links" "Instagram" "https://www.instagram.com/engageliverpool/"
+wp menu item add-custom "Social links" "YouTube" "https://www.youtube.com/channel/UCXXndwcdTLPibUwCDPWWlGg"
+wp menu location assign "Social links" "location-social"

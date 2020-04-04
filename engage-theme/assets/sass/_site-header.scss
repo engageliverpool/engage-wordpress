@@ -1,0 +1,233 @@
+.site-header__top-bar {
+    background-color: $color-engage-green;
+    color: $white;
+
+    display: none;
+
+    @include media-breakpoint-up('md') {
+        display: block;
+    }
+
+    .container {
+        justify-content: flex-end;
+    }
+
+    .social-links {
+        margin-left: $nav-link-padding-y;
+    }
+
+    // When the top-bar is visible, its nav-links are always right-aligned.
+    // If any of those links have a dropdown-menu, that should be
+    // right-aligned too, to prevent it hanging off the edge of the screen.
+    .dropdown-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+.site-header__main {
+    .site-logo--default {
+        width: 8rem;
+
+        @include media-breakpoint-up('md') {
+            width: 12rem;
+        }
+
+        @include media-breakpoint-up('xl') {
+            width: 14rem;
+        }
+    }
+
+    .site-logo--custom {
+        width: auto;
+        max-height: 2.5rem;
+
+        @include media-breakpoint-up('md') {
+            max-height: 4rem;
+        }
+    }
+
+    .top-links,
+    .social-links {
+        margin-top: $nav-link-padding-y;
+        border-top: 1px solid $border-color;
+        padding-top: $nav-link-padding-y;
+    }
+
+    .search-form {
+        padding: 1rem 0;
+
+        .form-control {
+            min-width: 0;
+        }
+
+        .btn {
+            margin-left: 0.5rem;
+
+            svg {
+                display: block;
+                width: 1.25rem;
+                height: auto;
+            }
+        }
+
+        // We want small search inputs until there’s space for big ones.
+        @include media-breakpoint-down('md') {
+            .form-control {
+                height: $input-height-sm;
+                padding: $input-padding-y-sm $input-padding-x-sm;
+                @include font-size($input-font-size-sm);
+                line-height: $input-line-height-sm;
+                @include border-radius($input-border-radius-sm);
+            }
+
+            .btn {
+                @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+
+                svg {
+                    width: 1rem;
+                }
+            }
+        }
+    }
+
+    .search-form__inputs {
+        display: flex;
+    }
+
+    // The md breakpoint range (768-991px) is a tricky one. We don’t want to
+    // hide everything behind a mobile nav toggler at this size, but at the
+    // same time, there’s not a lot of horizontal space. We we temporarily
+    // rejig the layout into a more two-dimensional form – neither purely
+    // vertical as it is on mobile, nor purely horizontal as it is on wider
+    // screens. We only want to affect this one particular breakpoint range,
+    // so we use `media-breakpoint-only`.
+    @include media-breakpoint-only('md') {
+        // We’re overloading the .collapse role here, to temporarily switch
+        // to stacking the nav links and search form *vertically* on top of
+        // each other, rather than beside each other. This gives the nav links
+        // more horizontal space, preventing a line break on narrow screens.
+        .collapse {
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        // Since main-links is now right-aligned, we want to make sure any
+        // dropdowns inside it are right-aligned too.
+        .main-links .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+
+        // And we need some vertical spacing between search-form and main-links.
+        .search-form {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    @include media-breakpoint-up('md') {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+
+        .top-links,
+        .social-links {
+            display: none;
+        }
+
+        .search-form {
+            padding: 0;
+        }
+
+        .main-links {
+            margin: ( $navbar-nav-link-padding-x * -1 ); // cancel out link padding
+        }
+
+        .search-form__label {
+            @include sr-only();
+        }
+    }
+
+    @include media-breakpoint-up('lg') {
+        .search-form {
+            order: 1; // move from before .main-links to after
+            margin-left: auto; // push as far away from .main-links as possible
+        }
+    }
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+    .nav-link {
+        display: block;
+        width: 1.5em;
+        height: 0;
+        padding: 1.5em 0 0 0 !important;
+        margin: $nav-link-padding-y $navbar-nav-link-padding-x;
+        overflow: hidden;
+        white-space: nowrap;
+        background-color: transparent;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        border-radius: $border-radius;
+
+        @include hover-focus {
+            opacity: 0.85;
+        }
+    }
+
+    & > :first-child > .nav-link {
+        margin-left: 0;
+    }
+
+    & > :last-child > .nav-link {
+        margin-right: 0;
+    }
+
+    [href^="https://facebook.com"],
+    [href^="https://www.facebook.com"] {
+        background-image: escape-svg($url-facebook-icon-color);
+    }
+
+    [href^="https://twitter.com"],
+    [href^="https://www.twitter.com"] {
+        background-image: escape-svg($url-twitter-icon-color);
+    }
+
+    [href^="https://instagram.com"],
+    [href^="https://www.instagram.com"] {
+        background-image: escape-svg($url-instagram-icon-color);
+    }
+
+    [href^="https://youtube.com"],
+    [href^="https://www.youtube.com"] {
+        background-image: escape-svg($url-youtube-icon-color);
+    }
+
+    .navbar-dark & {
+        [href^="https://facebook.com"],
+        [href^="https://www.facebook.com"] {
+            background-image: escape-svg($url-facebook-icon-white);
+        }
+
+        [href^="https://twitter.com"],
+        [href^="https://www.twitter.com"] {
+            background-image: escape-svg($url-twitter-icon-white);
+        }
+
+        [href^="https://instagram.com"],
+        [href^="https://www.instagram.com"] {
+            background-image: escape-svg($url-instagram-icon-white);
+        }
+
+        [href^="https://youtube.com"],
+        [href^="https://www.youtube.com"] {
+            background-image: escape-svg($url-youtube-icon-white);
+        }
+    }
+}

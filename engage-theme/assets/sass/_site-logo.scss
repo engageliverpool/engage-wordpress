@@ -1,0 +1,18 @@
+$site-logo-width: 660px;
+$site-logo-height: 225px;
+$site-logo-height-ratio: 100% * ( $site-logo-height / $site-logo-width );
+
+.site-logo--default {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    padding-top: $site-logo-height-ratio;
+    background: transparent;
+    background-image: url("../img/site-logo.png");
+    background-image: url("../img/site-logo.svg"), none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}

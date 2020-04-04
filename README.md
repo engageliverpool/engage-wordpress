@@ -27,6 +27,12 @@ The VM will automatically install WordPress, phpMyAdmin and MailHog, which you c
 
 WordPress and MySQL usernames and passwords are defined at the top of `provision/provision.sh`.
 
+When working on the WordPress theme, it can help to have some realistic content in the database – for example, realistic links in the nav menu. There’s a fixtures file in `bin/fixture` that will set up some of this content for you, in a repeatable way. It must be run from _within_ the wordpress directory, _inside_ the VM:
+
+    vagrant ssh
+    cd /var/www/wordpress
+    ~/shared/bin/fixture
+
 You can (re)build the CSS stylesheets by running this on the host machine:
 
     bin/make-css

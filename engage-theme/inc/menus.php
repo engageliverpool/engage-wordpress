@@ -5,8 +5,13 @@ function register_navwalker(){
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
 
-register_nav_menus(
-    array(
-        'header' => 'Header menu',
-    )
-);
+function register_custom_nav_menus(){
+    register_nav_menus(
+        array(
+            'location-top' => 'Top bar',
+            'location-header' => 'Main header',
+            'location-social' => 'Social links',
+        )
+    );
+}
+add_action( 'after_setup_theme', 'register_custom_nav_menus' );

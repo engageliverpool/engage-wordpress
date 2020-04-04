@@ -18,7 +18,7 @@
 // @import "bootstrap/button-group";
 // @import "bootstrap/input-group";
 // @import "bootstrap/custom-forms";
-// @import "bootstrap/nav";
+@import "bootstrap/nav";
 @import "bootstrap/navbar";
 // @import "bootstrap/card";
 // @import "bootstrap/breadcrumb";
@@ -41,5 +41,10 @@
 
 @import "wordpress";
 @import "type";
+
+@import "navbar";
+@import "site-logo";
+@import "site-header";
+
 @import "post-list";
 @import "pagination";

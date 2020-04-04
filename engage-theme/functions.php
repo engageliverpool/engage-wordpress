@@ -8,5 +8,6 @@ require get_theme_file_path( 'inc/wp-enqueue.php' );
 
 require get_theme_file_path( 'inc/functions-general.php' );
 require get_theme_file_path( 'inc/functions-posts.php' );
+require get_theme_file_path( 'inc/functions-menus.php' );
 
 require get_theme_file_path( 'inc/menus.php' );

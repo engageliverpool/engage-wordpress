@@ -4,14 +4,123 @@ $color-engage-mid-blue: #007AC8;
 $color-engage-light-blue: #00b3d4;
 $color-engage-red: #eb1752;
 
+$color-facebook-blue: #3b5998;
+$color-twitter-blue: #1da1f2;
+$color-instagram-pink: #e1306c;
+$color-youtube-red: #ff0000;
+
+// Pre-defining a few of the Bootstrap default colours, so we
+// can use them before bootstrap/_variables.scss is included.
+$white: #fff;
+$gray-600: #6c757d;
+$gray-700: #495057;
+
 $primary: $color-engage-mid-blue;
 $secondary: $color-engage-green;
 
+// Spacing
+
+// Body
+
 $link-color: $color-engage-mid-blue;
+
+// Links
+
+// Grid
+
+// Components
+
+// Typography
 
 $font-family-sans-serif: "Quicksand", sans-serif;
 $font-weight-normal: 500; // Quicksand 400 is very thin.
 
 $headings-margin-bottom: 1rem;
+
 $lead-font-weight: normal;
+
 $hr-margin-y: 2rem;
+
+// Tables
+
+// Buttons + Forms
+
+$input-btn-border-width: 2px;
+
+$input-border-color: $gray-600;
+
+// Navs
+
+// Navbar
+
+$navbar-toggler-padding-y: 0.5rem;
+$navbar-toggler-padding-x: 0.75rem;
+$navbar-toggler-font-size: 1rem;
+
+$navbar-dark-color: $white;
+$navbar-dark-hover-color: mix($white, $color-engage-green, 85%);
+$navbar-dark-active-color: $navbar-dark-hover-color;
+
+$navbar-light-color: $gray-700;
+$navbar-light-hover-color: $color-engage-mid-blue;
+$navbar-light-active-color: $color-engage-mid-blue;
+
+// Dropdowns
+
+// Pagination
+
+// Jumbotron
+
+// Cards
+
+// Tooltips
+
+// Popovers
+
+// Toasts
+
+// Badges
+
+// Modals
+
+// Alerts
+
+// Progress bars
+
+// List group
+
+// Image thumbnails
+
+// Figures
+
+// Breadcrumbs
+
+// Carousel
+
+// Spinners
+
+// Close
+
+// Code
+
+// Utilities
+
+// Printing
+
+// Social icons
+
+$url-facebook-icon-color: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><path fill='#{$color-facebook-blue}' d='M512 0v512H296V330h59.6l11.4-74h-71v-48c0-20.2 9.9-40 41.7-40H370v-63s-29.3-5-57.3-5c-58.5 0-96.7 35.4-96.7 99.6V256h-65v74h65v182H0V0h512z'/></svg>");
+$url-facebook-icon-white: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><path fill='#{$white}' d='M512 0v512H296V330h59.6l11.4-74h-71v-48c0-20.2 9.9-40 41.7-40H370v-63s-29.3-5-57.3-5c-58.5 0-96.7 35.4-96.7 99.6V256h-65v74h65v182H0V0h512z'/></svg>");
+
+$url-twitter-icon-color: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><path fill='#{$color-twitter-blue}' d='M512 0v512H0V0h512zM298.6 127.8A72 72 0 0 0 262 206a200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37 72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-85.4-13.2z'/></svg>");
+$url-twitter-icon-white: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><path fill='#{$white}' d='M512 0v512H0V0h512zM298.6 127.8A72 72 0 0 0 262 206a200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37 72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-85.4-13.2z'/></svg>");
+
+$url-instagram-icon-color: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><path fill='#{$color-instagram-pink}' d='M512 0v512H0V0h512zM326 93.5H186c-51 0-92.5 41.4-92.5 92.5v140c0 51 41.4 92.5 92.5 92.5h140c51 0 92.5-41.4 92.5-92.5V186c0-51-41.4-92.5-92.5-92.5zm0 29c35 0 63.5 28.4 63.5 63.5v140c0 35-28.4 63.5-63.5 63.5H186c-35 0-63.5-28.4-63.5-63.5V186c0-35 28.4-63.5 63.5-63.5h140zm-70 50a83.5 83.5 0 1 0 0 167 83.5 83.5 0 0 0 0-167zm0 29a54.5 54.5 0 1 1 0 109 54.5 54.5 0 0 1 0-109zm87-51.5a19 19 0 1 0 0 38 19 19 0 0 0 0-38z'/></svg>");
+$url-instagram-icon-white: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><path fill='#{$white}' d='M512 0v512H0V0h512zM326 93.5H186c-51 0-92.5 41.4-92.5 92.5v140c0 51 41.4 92.5 92.5 92.5h140c51 0 92.5-41.4 92.5-92.5V186c0-51-41.4-92.5-92.5-92.5zm0 29c35 0 63.5 28.4 63.5 63.5v140c0 35-28.4 63.5-63.5 63.5H186c-35 0-63.5-28.4-63.5-63.5V186c0-35 28.4-63.5 63.5-63.5h140zm-70 50a83.5 83.5 0 1 0 0 167 83.5 83.5 0 0 0 0-167zm0 29a54.5 54.5 0 1 1 0 109 54.5 54.5 0 0 1 0-109zm87-51.5a19 19 0 1 0 0 38 19 19 0 0 0 0-38z'/></svg>");
+
+$url-youtube-icon-color: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><path fill='#{$color-youtube-red}' d='M512 0v512H0V0h512zM117 138c-15 4-28 16-32 31-9 38-10 135 0 174 4 15 17 27 32 31 36 10 241 10 278 0 15-4 28-16 32-31 9-36 9-137 0-174-4-15-17-27-32-31-34-9-239-10-278 0zm103 65l93 53-93 53V203z'/></svg>");
+$url-youtube-icon-white: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><path fill='#{$white}' d='M512 0v512H0V0h512zM117 138c-15 4-28 16-32 31-9 38-10 135 0 174 4 15 17 27 32 31 36 10 241 10 278 0 15-4 28-16 32-31 9-36 9-137 0-174-4-15-17-27-32-31-34-9-239-10-278 0zm103 65l93 53-93 53V203z'/></svg>");
+
+// Icons
+
+$url-navbar-toggler-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><g fill='#{$navbar-light-color}' fill-rule='nonzero'><rect width='16' height='2' y='2' rx='1'/><rect width='16' height='2' y='12' rx='1'/><rect width='16' height='2' y='7' rx='1'/></g></svg>");
