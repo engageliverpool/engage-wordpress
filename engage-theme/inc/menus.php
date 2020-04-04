@@ -11,6 +11,7 @@ function register_custom_nav_menus(){
             'location-top' => 'Top bar',
             'location-header' => 'Main header',
             'location-social' => 'Social links',
+            'location-footer' => 'Footer links',
         )
     );
 }

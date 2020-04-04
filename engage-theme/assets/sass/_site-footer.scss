@@ -1,0 +1,23 @@
+$footer-bg: mix($color-engage-mid-blue, #fff, 5%);
+
+.site-footer {
+    padding: 3rem 0;
+    margin-top: 3rem;
+    border-top: 0.25rem solid $color-engage-green;
+    background-color: $footer-bg;
+    box-shadow: 0 1000px 0 1000px $footer-bg;
+
+    .nav {
+        margin-top: 1rem;
+    }
+
+    .nav-link,
+    .nav-item--mixed-content {
+        padding: 0.25rem 0;
+    }
+}
+
+.site-footer__logo {
+    display: block;
+    width: 10rem;
+}

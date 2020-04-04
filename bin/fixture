@@ -33,3 +33,13 @@ wp menu item add-custom "Social links" "Facebook" "https://www.facebook.com/Enga
 wp menu item add-custom "Social links" "Instagram" "https://www.instagram.com/engageliverpool/"
 wp menu item add-custom "Social links" "YouTube" "https://www.youtube.com/channel/UCXXndwcdTLPibUwCDPWWlGg"
 wp menu location assign "Social links" "location-social"
+
+if contains "Tertiary links" "$MENUS"; then
+    wp menu delete "Tertiary links" --quiet
+fi
+wp menu create "Tertiary links"
+wp menu item add-custom "Tertiary links" "About" "#"
+wp menu item add-custom "Tertiary links" "Contact" "#"
+wp menu item add-custom "Tertiary links" "Grapevine" "#"
+wp menu item add-custom "Tertiary links" "Privacy & Cookies" "#"
+wp menu location assign "Tertiary links" "location-footer"

@@ -1,0 +1,10 @@
+.nav-item--mixed-content {
+    display: block;
+    padding: $nav-link-padding-y $nav-link-padding-x;
+
+    a {
+        @include hover-focus() {
+            text-decoration: none;
+        }
+    }
+}
