@@ -8,12 +8,23 @@ $footer-bg: mix($color-engage-mid-blue, #fff, 5%);
     box-shadow: 0 1000px 0 1000px $footer-bg;
 
     .nav {
-        margin-top: 1rem;
+        margin-top: 0.75rem;
     }
 
     .nav-link,
     .nav-item--mixed-content {
         padding: 0.25rem 0;
+    }
+
+    .widget {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .widget__title {
+        font-size: 1em;
+        font-weight: bold;
+        color: $color-engage-green;
     }
 }
 

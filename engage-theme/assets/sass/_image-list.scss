@@ -1,0 +1,18 @@
+.image-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: ( $grid-gutter-width / -2 );
+
+    a {
+        display: block;
+        padding: ( $grid-gutter-width / 2 );
+    }
+
+    img {
+        width: auto;
+        height: auto;
+        max-height: 4em;
+        max-width: 6em;
+    }
+}

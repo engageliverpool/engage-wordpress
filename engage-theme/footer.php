@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-8 offset-md-1 col-lg-9 offset-lg-0">
 
-                    <!-- supporter logos will go here -->
+                    <?php dynamic_sidebar( 'footer-sidebar' ); ?>
 
                 </div>
             </div>
