@@ -2,13 +2,43 @@
 
 contains() { [ -z "$1" ] || { [ -z "${2##*$1*}" ] && [ -n "$2" ]; }; }
 
+wp option update 'blogdescription' 'Making a place for everyone in a vibrant, sustainable Liverpool'
+
+wp option update 'show_on_front' 'page'
+wp option update 'permalink_structure' '/news/%postname%/'
+
+FRONT_PAGE_ID=$(wp post list --post_type=page --name=front-page --field=ID)
+NEWS_PAGE_ID=$(wp post list --post_type=page --name=news --field=ID)
+
+if [ -z "$FRONT_PAGE_ID" ]; then
+    FRONT_PAGE_ID=$(wp post create \
+        --porcelain \
+        --post_type='page' \
+        --post_status='publish' \
+        --post_name='front-page'
+        --post_title='Front page' \
+        --post_content='This is the front page. Hello!')
+    wp option update 'page_on_front' "$FRONT_PAGE_ID"
+fi
+
+if [ -z "$NEWS_PAGE_ID" ]; then
+    NEWS_PAGE_ID=$(wp post create \
+        --porcelain \
+        --post_type='page' \
+        --post_status='publish' \
+        --post_name='news'
+        --post_title='News' \
+        --post_content='This is the news page.')
+    wp option update 'page_for_posts' "$NEWS_PAGE_ID"
+fi
+
 MENUS=$(wp menu list --format="csv" --fields="name")
 
 if contains "Primary links" "$MENUS"; then
     wp menu delete "Primary links" --quiet
 fi
 wp menu create "Primary links"
-wp menu item add-custom "Primary links" "News" "#"
+wp menu item add-post "Primary links" "$NEWS_PAGE_ID" --title='News'
 wp menu item add-custom "Primary links" "Events" "/events/"
 wp menu item add-custom "Primary links" "Projects" "#"
 wp menu item add-custom "Primary links" "Seminars" "#"
@@ -43,3 +73,5 @@ wp menu item add-custom "Tertiary links" "Contact" "#"
 wp menu item add-custom "Tertiary links" "Grapevine" "#"
 wp menu item add-custom "Tertiary links" "Privacy & Cookies" "#"
 wp menu location assign "Tertiary links" "location-footer"
+
+wp rewrite flush
