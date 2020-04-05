@@ -9,7 +9,7 @@ if contains "Primary links" "$MENUS"; then
 fi
 wp menu create "Primary links"
 wp menu item add-custom "Primary links" "News" "#"
-wp menu item add-custom "Primary links" "Events" "#"
+wp menu item add-custom "Primary links" "Events" "/events/"
 wp menu item add-custom "Primary links" "Projects" "#"
 wp menu item add-custom "Primary links" "Seminars" "#"
 wp menu location assign "Primary links" "location-header"
