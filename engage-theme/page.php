@@ -7,24 +7,42 @@
 
 get_header();
 
+start_site_content();
+
 if ( have_posts() ) {
     while ( have_posts() ) {
         the_post(); ?>
 
-    <h1>
-        <?php the_title(); ?>
-    </h1>
+    <?php the_feature_image(); ?>
 
-  <?php if ( has_post_thumbnail() ) { ?>
-    <?php the_post_thumbnail(); ?>
-  <?php } ?>
+    <div class="row">
+        <div class="col-md-8">
 
-    <div>
-        <?php the_content(); ?>
+            <h1 class="post__title">
+                <?php the_title(); ?>
+            </h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+
+            <div class="post__content">
+                <?php the_content(); ?>
+            </div>
+
+        </div>
+        <div class="col-md-3 offset-md-1">
+
+            <?php the_sidebar(); ?>
+
+        </div>
     </div>
 
     <?php
     }
 }
+
+end_site_content();
 
 get_footer();

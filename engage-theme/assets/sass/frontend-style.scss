@@ -41,6 +41,7 @@
 
 @import "wordpress";
 @import "type";
+@import "img";
 
 @import "nav";
 @import "navbar";
@@ -48,6 +49,8 @@
 @import "site-header";
 @import "site-footer";
 
+@import "post";
+@import "sidebar";
 @import "image-list";
 @import "post-list";
 @import "pagination";

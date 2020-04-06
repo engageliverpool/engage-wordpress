@@ -108,3 +108,12 @@ a img.alignleft {
     max-width: 100px;
     border-top-width: 2px;
 }
+
+.wp-block-table table {
+    @extend .table;
+    @extend .table-bordered;
+}
+
+.wp-block-table.is-style-stripes {
+    @extend .table-striped;
+}

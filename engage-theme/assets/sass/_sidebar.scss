@@ -1,0 +1,30 @@
+.sidebar {
+    @include media-breakpoint-up('sm') {
+        margin-top: -0.5rem;
+    }
+}
+
+.sidebar-widget {
+    margin-top: 2rem;
+
+    ul {
+        list-style: none;
+        margin-bottom: 0;
+        padding-left: 0;
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    // TODO: Not sure about this.
+    & + & {
+        padding-top: 2rem;
+        border-top: 1px solid $gray-300;
+    }
+}
+
+.sidebar-widget__title {
+    @include font-size($h4-font-size);
+    color: $gray-600;
+}

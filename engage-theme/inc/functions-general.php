@@ -49,6 +49,17 @@ function get_site_logo() {
 }
 
 
+function start_site_content() {
+    echo '<div class="site-content">' . "\n";
+    echo '<div class="container">' . "\n";
+}
+
+function end_site_content() {
+    echo '</div>' . "\n";
+    echo '</div>' . "\n";
+}
+
+
 // Record the current template name when including a template.
 // (Handy for debugging which templates are being rendered!)
 function record_current_template( $template ) {

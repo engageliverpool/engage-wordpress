@@ -40,3 +40,42 @@ function post_list_item( $post, $args = array() ) {
 
     echo '</div>';
 }
+
+
+function the_dates() {
+    $html = '';
+    $published = get_the_time( 'Y-m-d' );
+    $updated = get_the_modified_time( 'Y-m-d' );
+
+    $html .= sprintf(
+        'Published by %s on <time datetime="%s">%s</time>',
+        get_the_author_posts_link(),
+        $published,
+        get_the_time('jS F Y')
+    );
+
+    if ( $published != $updated ) {
+        $html .= sprintf(
+            ', updated <time datetime="%s">%s</time>',
+            $updated,
+            get_the_modified_time('jS F Y')
+        );
+    }
+
+    echo $html;
+}
+
+
+function the_feature_image() {
+    if ( has_post_thumbnail() ) {
+        $css = sprintf(
+            "background-image: url(%s);",
+            esc_attr( wp_get_attachment_url( get_post_thumbnail_id() ) )
+        );
+        echo sprintf(
+            '<div class="post__feature-image" style="%s">%s</div>',
+            $css,
+            get_the_post_thumbnail()
+        );
+    }
+}

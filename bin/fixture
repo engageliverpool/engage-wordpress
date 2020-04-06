@@ -74,4 +74,8 @@ wp menu item add-custom "Tertiary links" "Grapevine" "#"
 wp menu item add-custom "Tertiary links" "Privacy & Cookies" "#"
 wp menu location assign "Tertiary links" "location-footer"
 
+wp plugin install --activate tag-list-widget
+
+wp user update admin --display_name="Joe Admin"
+
 wp rewrite flush
