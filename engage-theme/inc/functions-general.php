@@ -69,11 +69,14 @@ function record_current_template( $template ) {
 add_action('template_include', 'record_current_template', 1000);
 
 
-// Make the requested URL available to the templates, without
-// having to mess around with $wp or $SERVER['REQUEST_URI'].
+// Make the requested URL available to the templates.
+// WordPress knows the protocol, domain, and port (in home_url), and
+// path ($wp-request) but doesn't make it easy to get the query vars.
+// $_SERVER['REQUEST_URI'] contains both the path and query vars, so
+// we use that for everything after the domain/port.
 function record_request_url( $template ) {
     global $wp;
-    $GLOBALS['current_request_url'] = home_url( add_query_arg( array(), $wp->request ) );
+    $GLOBALS['current_request_url'] = home_url() . $_SERVER['REQUEST_URI'];
     return $template;
 }
 add_action('template_include', 'record_request_url', 1000);

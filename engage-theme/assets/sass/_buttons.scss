@@ -1,0 +1,15 @@
+.btn-facebook {
+    @include button-variant($color-facebook-blue, $color-facebook-blue);
+}
+
+.btn-twitter {
+    @include button-variant($color-twitter-blue, $color-twitter-blue);
+}
+
+.btn-outline-facebook {
+    @include button-outline-variant($color-facebook-blue);
+}
+
+.btn-outline-twitter {
+    @include button-outline-variant($color-twitter-blue);
+}
