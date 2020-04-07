@@ -6,6 +6,8 @@
 
 get_header();
 
+start_site_content();
+
 ?>
 
 <h1>Ooops! We can’t find that page</h1>
@@ -15,5 +17,7 @@ get_header();
 <?php get_search_form(); ?>
 
 <?php
+
+end_site_content();
 
 get_footer();
