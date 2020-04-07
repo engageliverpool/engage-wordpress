@@ -10,8 +10,8 @@ start_site_content();
 
 ?>
 
-<div class="row">
-    <div class="col-md-8">
+<div class="page-section">
+    <div class="page-section__primary">
 
         <?php the_page_title_and_description(); ?>
 
@@ -20,8 +20,8 @@ start_site_content();
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
+<div class="page-section">
+    <div class="page-section__primary">
 
       <?php
 
@@ -36,7 +36,7 @@ start_site_content();
       ?>
 
     </div>
-    <div class="col-md-3 offset-md-1">
+    <div class="page-section__secondary">
 
         <?php the_sidebar(); ?>
 

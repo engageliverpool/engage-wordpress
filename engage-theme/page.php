@@ -13,10 +13,16 @@ if ( have_posts() ) {
     while ( have_posts() ) {
         the_post(); ?>
 
-    <?php the_feature_image(); ?>
+  <?php if ( has_feature_image() ) { ?>
+    <div class="page-section">
+        <div class="page-section__only">
+            <?php the_feature_image(); ?>
+        </div>
+    </div>
+  <?php } ?>
 
-    <div class="row">
-        <div class="col-md-8">
+    <div class="page-section">
+        <div class="page-section__primary">
 
             <h1 class="post__title">
                 <?php the_title(); ?>
@@ -24,15 +30,15 @@ if ( have_posts() ) {
 
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-8">
+    <div class="page-section">
+        <div class="page-section__primary">
 
             <div class="post__content">
                 <?php the_content(); ?>
             </div>
 
         </div>
-        <div class="col-md-3 offset-md-1">
+        <div class="page-section__secondary">
 
             <?php the_sidebar(); ?>
 

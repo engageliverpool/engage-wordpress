@@ -1,7 +1,5 @@
 .sidebar {
-    @include media-breakpoint-up('sm') {
-        margin-top: -0.5rem;
-    }
+    margin-top: -2rem;
 }
 
 .sidebar-widget {

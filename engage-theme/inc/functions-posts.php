@@ -66,6 +66,11 @@ function the_dates() {
 }
 
 
+function has_feature_image() {
+    return has_post_thumbnail();
+}
+
+
 function the_feature_image() {
     if ( has_post_thumbnail() ) {
         $css = sprintf(
