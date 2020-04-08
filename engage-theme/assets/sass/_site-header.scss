@@ -60,20 +60,6 @@
     .search-form {
         padding: 1rem 0;
 
-        .form-control {
-            min-width: 0;
-        }
-
-        .btn {
-            margin-left: 0.5rem;
-
-            svg {
-                display: block;
-                width: 1.25rem;
-                height: auto;
-            }
-        }
-
         // We want small search inputs until there’s space for big ones.
         @include media-breakpoint-down('md') {
             .form-control {
@@ -92,10 +78,6 @@
                 }
             }
         }
-    }
-
-    .search-form__inputs {
-        display: flex;
     }
 
     // The md breakpoint range (768-991px) is a tricky one. We don’t want to
