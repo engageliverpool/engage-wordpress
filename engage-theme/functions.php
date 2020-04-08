@@ -8,6 +8,7 @@ require get_theme_file_path( 'inc/wp-tidy.php' );
 require get_theme_file_path( 'inc/wp-fixes.php' );
 require get_theme_file_path( 'inc/wp-compat.php' );
 require get_theme_file_path( 'inc/wp-enqueue.php' );
+require get_theme_file_path( 'inc/wp-admin-bar.php' );
 
 require get_theme_file_path( 'inc/carbon-fields.php' );
 
