@@ -1,4 +1,4 @@
-<?php $id = uniqid(); ?>
+<?php $id = 's_' . uniqid(); ?>
 <form role="search" method="get" class="search-form" action="<?php echo home_url('/'); ?>">
     <label for="<?php echo esc_attr($id); ?>" class="search-form__label">
         Search news, projects, and events
