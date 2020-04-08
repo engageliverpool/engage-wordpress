@@ -12,13 +12,7 @@ if ( have_posts() ) {
     while ( have_posts() ) {
         the_post(); ?>
 
-  <?php if ( has_feature_image() ) { ?>
-    <div class="page-section">
-        <div class="page-section__only">
-            <?php the_feature_image(); ?>
-        </div>
-    </div>
-  <?php } ?>
+    <?php the_feature_section(); ?>
 
     <div class="page-section">
         <div class="page-section__primary">

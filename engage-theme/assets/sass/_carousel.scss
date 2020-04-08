@@ -1,0 +1,32 @@
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: rgba($color-engage-green, 0.001);
+    top: 50%;
+    height: 0;
+    width: 15%;
+    padding-top: 15%;
+    overflow: hidden;
+    transform: translate(0, -50%);
+
+    @include hover-focus() {
+        background-color: rgba($color-engage-green, 0.7);
+    }
+
+    @include media-breakpoint-up('lg') {
+        width: 12.5%;
+        padding-top: 12.5%;
+    }
+
+    @include media-breakpoint-up('xl') {
+        width: 10%;
+        padding-top: 10%;
+    }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

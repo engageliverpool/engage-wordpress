@@ -34,7 +34,7 @@
 // @import "bootstrap/modal";
 // @import "bootstrap/tooltip";
 // @import "bootstrap/popover";
-// @import "bootstrap/carousel";
+@import "bootstrap/carousel";
 // @import "bootstrap/spinners";
 @import "bootstrap/utilities";
 @import "bootstrap/print";
@@ -43,6 +43,7 @@
 @import "buttons";
 @import "type";
 @import "img";
+@import "carousel";
 
 @import "nav";
 @import "navbar";
@@ -52,6 +53,7 @@
 @import "page-section";
 
 @import "post";
+@import "feature-image";
 @import "sidebar";
 @import "image-list";
 @import "post-list";

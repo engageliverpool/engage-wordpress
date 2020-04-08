@@ -93,6 +93,15 @@ function the_page_title_and_description() {
 }
 
 
+function no_widow( $text ) {
+    return preg_replace(
+        '/(.+)\s+(\S+)$/',
+        '\1&nbsp;\2',
+        $text
+    );
+}
+
+
 // Record the current template name when including a template.
 // (Handy for debugging which templates are being rendered!)
 function record_current_template( $template ) {

@@ -66,21 +66,34 @@ function the_dates() {
 }
 
 
-function has_feature_image() {
-    return has_post_thumbnail();
+function get_post_by_slug( $slug ) {
+    $posts = get_posts( array(
+        'name' => $slug,
+        'post_type' => 'any',
+        'post_status' => 'publish',
+        'posts_per_page' => 1
+    ) );
+    if ( count( $posts ) ) {
+        return $posts[0];
+    }
 }
 
 
-function the_feature_image() {
-    if ( has_post_thumbnail() ) {
-        $css = sprintf(
-            "background-image: url(%s);",
-            esc_attr( wp_get_attachment_url( get_post_thumbnail_id() ) )
-        );
-        echo sprintf(
-            '<div class="post__feature-image" style="%s">%s</div>',
-            $css,
-            get_the_post_thumbnail()
-        );
+function get_the_ancestor_title( $post = 0 ) {
+    $post = get_post( $post );
+    $url_parts = parse_url( get_permalink( $post ) );
+
+    if ( $url_parts ) {
+        $slugs = explode( '/', $url_parts['path'] );
+        $slugs = array_values( array_filter( $slugs, 'strlen' ) );
+        if ( count($slugs) > 1 ) {
+            $top_slug = $slugs[0];
+            $top_post = get_post_by_slug( $top_slug );
+            if ( $top_post ) {
+                return get_the_title( $top_post );
+            }
+        }
     }
+
+    return '';
 }

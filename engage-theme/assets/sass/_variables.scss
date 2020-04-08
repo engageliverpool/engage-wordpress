@@ -12,11 +12,16 @@ $color-youtube-red: #ff0000;
 // Pre-defining a few of the Bootstrap default colours, so we
 // can use them before bootstrap/_variables.scss is included.
 $white: #fff;
+$gray-200: #e9ecef;
 $gray-600: #6c757d;
 $gray-700: #495057;
 
 $primary: $color-engage-mid-blue;
 $secondary: $color-engage-green;
+
+$theme-colors: (
+    "light-grey": $gray-200
+);
 
 // Spacing
 
@@ -98,6 +103,16 @@ $navbar-light-active-color: $color-engage-mid-blue;
 // Breadcrumbs
 
 // Carousel
+
+$carousel-control-color: $white;
+$carousel-control-opacity: 1;
+$carousel-control-hover-opacity: 1;
+$carousel-control-transition: background-color 0.15s ease;
+
+$carousel-control-icon-width: 30px;
+
+$carousel-control-prev-icon-bg: url("data:image/svg+xml,<svg height='30' viewBox='0 0 30 30' width='30' xmlns='http://www.w3.org/2000/svg'><path d='m18 3.58578644-11.41421356 11.41421356 11.41421356 11.4142136 5.1642136-5.1642136-6.25-6.25 6.25-6.25z' fill='#{$carousel-control-color}' stroke='#{$color-engage-green}' stroke-opacity='1' stroke-width='2'/></svg>");
+$carousel-control-next-icon-bg: url("data:image/svg+xml,<svg height='30' viewBox='0 0 30 30' width='30' xmlns='http://www.w3.org/2000/svg'><path d='m11.75 3.58578644-5.16421356 5.16421356 6.24999996 6.25-6.24999996 6.25 5.16421356 5.1642136 11.4142136-11.4142136z' fill='#{$carousel-control-color}' stroke='#{$color-engage-green}' stroke-opacity='1' stroke-width='2'/></svg>");
 
 // Spinners
 
