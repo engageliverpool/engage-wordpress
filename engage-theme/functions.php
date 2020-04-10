@@ -24,6 +24,7 @@ require get_theme_file_path( 'inc/menus.php' );
 require get_theme_file_path( 'inc/widgets.php' );
 require get_theme_file_path( 'inc/attachments.php' );
 
+require get_theme_file_path( 'post-types/post.php' );
 require get_theme_file_path( 'post-types/event.php' );
 
 require get_theme_file_path( 'widgets/related-tags.php' );

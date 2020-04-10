@@ -17,7 +17,7 @@ function register_handy_admin_bar_submenu( $wp_admin_bar ) {
         array(
             'parent' => 'handy',
             'id' => 'posts',
-            'title' => 'Posts',
+            'title' => 'News',
             'href' => admin_url( 'edit.php' ),
         )
     );
