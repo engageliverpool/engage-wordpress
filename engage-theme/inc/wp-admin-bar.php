@@ -49,8 +49,16 @@ function register_handy_admin_bar_submenu( $wp_admin_bar ) {
         array(
             'parent' => 'handy',
             'id' => 'tags',
-            'title' => 'Tags',
+            'title' => 'Topics',
             'href' => admin_url( 'edit-tags.php?taxonomy=post_tag' ),
+        )
+    );
+    $wp_admin_bar->add_node(
+        array(
+            'parent' => 'handy',
+            'id' => 'tags',
+            'title' => 'Projects',
+            'href' => admin_url( 'edit-tags.php?taxonomy=category' ),
         )
     );
 }
