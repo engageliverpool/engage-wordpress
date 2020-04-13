@@ -84,6 +84,18 @@ function event_updated_messages( $messages ) {
 add_filter( 'post_updated_messages', 'event_updated_messages' );
 
 
+function sort_events_by_start($query) {
+    if ($query->is_main_query()) {
+        if ( isset($query->query_vars['post_type']) && ($query->query_vars['post_type'] == 'event') ) {
+            $query->set('meta_key', '_event_start');
+            $query->set('orderby', 'meta_value' );
+            $query->set('order', 'ASC' );
+        }
+    }
+}
+add_action( 'pre_get_posts', 'sort_events_by_start' );
+
+
 Container::make(
     'post_meta',
     'Event Details'
@@ -108,19 +120,12 @@ Container::make(
             '1'
         ),
         Field::make(
-            'date',
-            'event_start_date',
-            'Start date'
-        )->set_width(
-            50
-        ),
-        Field::make(
-            'time',
-            'event_start_time',
-            'Start time'
+            'date_time',
+            'event_start',
+            'Start date and time'
         )->set_input_format(
-            'H:i',
-            'H:i'
+            'Y-m-d H:i',
+            'Y-m-d H:i'
         )->set_picker_options(
             array(
                 'time_24hr' => true,
@@ -130,19 +135,12 @@ Container::make(
             50
         ),
         Field::make(
-            'date',
-            'event_end_date',
-            'End date'
-        )->set_width(
-            50
-        ),
-        Field::make(
-            'time',
-            'event_end_time',
-            'End time'
+            'date_time',
+            'event_end',
+            'End date and time'
         )->set_input_format(
-            'H:i',
-            'H:i'
+            'Y-m-d H:i',
+            'Y-m-d H:i'
         )->set_picker_options(
             array(
                 'time_24hr' => true,

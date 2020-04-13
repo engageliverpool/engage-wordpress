@@ -16,10 +16,8 @@ if ( have_posts() ) {
         $event_meta = array(
             'location' => carbon_get_the_post_meta( 'event_location' ),
             'display_map' => carbon_get_the_post_meta( 'event_display_map' ),
-            'start_date' => carbon_get_the_post_meta( 'event_start_date' ),
-            'start_time' => carbon_get_the_post_meta( 'event_start_time' ),
-            'end_date' => carbon_get_the_post_meta( 'event_end_date' ),
-            'end_time' => carbon_get_the_post_meta( 'event_end_time' ),
+            'start' => carbon_get_the_post_meta( 'event_start' ),
+            'end' => carbon_get_the_post_meta( 'event_end' ),
         );
     ?>
 
@@ -36,8 +34,8 @@ if ( have_posts() ) {
             <p class="event__location"><?php echo esc_html( $event_meta['location']['address'] ); ?></p>
           <?php } ?>
 
-          <?php if ( $event_meta['start_date'] ) { ?>
-            <p class="event__date"><?php echo esc_html( event_times( $event_meta ) ); ?><p>
+          <?php if ( $event_meta['start'] ) { ?>
+            <p class="event__date"><?php echo esc_html( event_times( $event_meta['start'], $event_meta['end'] ) ); ?><p>
           <?php } ?>
 
         </div>

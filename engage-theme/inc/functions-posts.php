@@ -15,6 +15,8 @@ function post_list_item( $post, $args = array() ) {
     );
     $a = wp_parse_args( $args, $defaults );
 
+    $post_type = get_post_type($post);
+
     echo '<div class="post-list__item">' . "\n";
 
     echo sprintf(
@@ -24,12 +26,20 @@ function post_list_item( $post, $args = array() ) {
         esc_html( get_the_title($post) ),
         esc_html( $a['heading_tag'] )
     );
-    if ( get_post_type($post) == 'post' ) {
+    if ( $post_type == 'post' ) {
         echo sprintf(
             '<time class="post-list__item__date" datetime="%s">%s</time>' . "\n",
             get_the_time( 'Y-m-d', $post ),
             get_the_time( 'jS F Y', $post )
-      );
+        );
+    } elseif ( $post_type == 'event' ) {
+        echo sprintf(
+            '<p class="post-list__item__date">%s</p>' . "\n",
+            esc_html( event_times(
+                carbon_get_post_meta( $post->ID, 'event_start' ),
+                carbon_get_post_meta( $post->ID, 'event_end' )
+            ) )
+        );
     }
     if ( $a['show_excerpt'] ) {
         echo sprintf(
@@ -99,81 +109,41 @@ function get_the_ancestor_title( $post = 0 ) {
 }
 
 
-function event_times( $event_meta ) {
+function event_times( $start, $end = null ) {
     $parts = array();
 
-    $start_timestamp = '';
-    $end_timestamp = '';
+    $start_timestamp = strtotime($start);
+    $end_timestamp = strtotime($end); // will be False if $end is null
 
-    if ( $event_meta['start_date'] ) {
-        if ( $event_meta['start_time'] ) {
-            $start_timestamp = strtotime(
-                sprintf(
-                    '%s %s',
-                    $event_meta['start_date'],
-                    $event_meta['start_time']
-                )
-            );
+    $start_format = 'H:i';
+    $end_format = '';
+
+    if ( $end_timestamp ) {
+        if ( date( 'Y-m-d', $start_timestamp ) == date( 'Y-m-d', $end_timestamp ) ) {
+            // Event starts and ends on the same day.
+            // No need to print anything else about the start.
+        } elseif ( date( 'Y-m', $start_timestamp ) == date( 'Y-m', $end_timestamp ) ) {
+            // Event starts and ends in the same month.
+            // Only need to print out the start day.
+            $start_format .= ' l jS';
+        } elseif ( date( 'Y', $start_timestamp ) == date( 'Y', $end_timestamp ) ) {
+            // Event starts and ends in the same year.
+            // Print out the start day and month.
+            $start_format .= ' l jS F';
         } else {
-            $start_timestamp = strtotime(
-                $event_meta['start_date']
-            );
-        }
-
-        if ( $event_meta['end_date'] ) {
-            if ( $event_meta['end_time'] ) {
-                $end_timestamp = strtotime(
-                    sprintf(
-                        '%s %s',
-                        $event_meta['end_date'],
-                        $event_meta['end_time']
-                    )
-                );
-            } else {
-                $end_timestamp = strtotime(
-                    $event_meta['end_date']
-                );
-            }
-        }
-
-        $start_format = '';
-        $end_format = '';
-
-        if ( $event_meta['start_time'] ) {
-            // Always want to display start time, if it has been set.
-            $start_format = 'H:i';
-        }
-
-        if ( $end_timestamp ) {
-            if ( date( 'Y-m-d', $start_timestamp ) == date( 'Y-m-d', $end_timestamp ) ) {
-                // Event starts and ends on the same day.
-                // No need to print anything else about the start.
-            } elseif ( date( 'Y-m', $start_timestamp ) == date( 'Y-m', $end_timestamp ) ) {
-                // Event starts and ends in the same month.
-                // Only need to print out the start day.
-                $start_format .= ' l jS';
-            } elseif ( date( 'Y', $start_timestamp ) == date( 'Y', $end_timestamp ) ) {
-                // Event starts and ends in the same year.
-                // Print out the start day and month.
-                $start_format .= ' l jS F';
-            } else {
-                $start_format .= ' l jS F Y';
-            }
-
-            if ( $event_meta['end_time'] ) {
-                $end_format = 'H:i';
-            }
-            $end_format .= ' l jS F Y';
-        } else {
-            // No end date, so need to print out entire start date string.
             $start_format .= ' l jS F Y';
         }
 
-        $parts[] = date( $start_format, $start_timestamp );
-        if ( $end_format ) {
-            $parts[] = '–';
-            $parts[] = date( $end_format, $end_timestamp );
-        }
+        $end_format = 'H:i l jS F Y';
+    } else {
+        // No end date, so need to print out entire start date string.
+        $start_format .= ' l jS F Y';
+    }
+
+    $parts[] = date( $start_format, $start_timestamp );
+    if ( $end_format ) {
+        $parts[] = '–';
+        $parts[] = date( $end_format, $end_timestamp );
     }
 
     return implode( " ", $parts);
