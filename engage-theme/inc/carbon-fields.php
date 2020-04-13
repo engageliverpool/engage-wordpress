@@ -24,3 +24,8 @@
 define( 'Carbon_Fields\DIR', get_theme_file_path( 'vendor/htmlburger/carbon-fields' ) );
 
 \Carbon_Fields\Carbon_Fields::boot();
+
+function crb_get_gmaps_api_key( $key ) {
+    return carbon_get_theme_option( 'google_maps_api_key' );
+}
+add_filter( 'carbon_fields_map_field_api_key', 'crb_get_gmaps_api_key' );

@@ -97,3 +97,84 @@ function get_the_ancestor_title( $post = 0 ) {
 
     return '';
 }
+
+
+function event_times( $event_meta ) {
+    $parts = array();
+
+    $start_timestamp = '';
+    $end_timestamp = '';
+
+    if ( $event_meta['start_date'] ) {
+        if ( $event_meta['start_time'] ) {
+            $start_timestamp = strtotime(
+                sprintf(
+                    '%s %s',
+                    $event_meta['start_date'],
+                    $event_meta['start_time']
+                )
+            );
+        } else {
+            $start_timestamp = strtotime(
+                $event_meta['start_date']
+            );
+        }
+
+        if ( $event_meta['end_date'] ) {
+            if ( $event_meta['end_time'] ) {
+                $end_timestamp = strtotime(
+                    sprintf(
+                        '%s %s',
+                        $event_meta['end_date'],
+                        $event_meta['end_time']
+                    )
+                );
+            } else {
+                $end_timestamp = strtotime(
+                    $event_meta['end_date']
+                );
+            }
+        }
+
+        $start_format = '';
+        $end_format = '';
+
+        if ( $event_meta['start_time'] ) {
+            // Always want to display start time, if it has been set.
+            $start_format = 'H:i';
+        }
+
+        if ( $end_timestamp ) {
+            if ( date( 'Y-m-d', $start_timestamp ) == date( 'Y-m-d', $end_timestamp ) ) {
+                // Event starts and ends on the same day.
+                // No need to print anything else about the start.
+            } elseif ( date( 'Y-m', $start_timestamp ) == date( 'Y-m', $end_timestamp ) ) {
+                // Event starts and ends in the same month.
+                // Only need to print out the start day.
+                $start_format .= ' l jS';
+            } elseif ( date( 'Y', $start_timestamp ) == date( 'Y', $end_timestamp ) ) {
+                // Event starts and ends in the same year.
+                // Print out the start day and month.
+                $start_format .= ' l jS F';
+            } else {
+                $start_format .= ' l jS F Y';
+            }
+
+            if ( $event_meta['end_time'] ) {
+                $end_format = 'H:i';
+            }
+            $end_format .= ' l jS F Y';
+        } else {
+            // No end date, so need to print out entire start date string.
+            $start_format .= ' l jS F Y';
+        }
+
+        $parts[] = date( $start_format, $start_timestamp );
+        if ( $end_format ) {
+            $parts[] = '–';
+            $parts[] = date( $end_format, $end_timestamp );
+        }
+    }
+
+    return implode( " ", $parts);
+}

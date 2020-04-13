@@ -34,6 +34,18 @@ function enqueue_frontend_scripts() {
         array('jquery'),
         '3.3.7'
     );
+    wp_enqueue_script(
+        'google-maps',
+        'https://maps.googleapis.com/maps/api/js?key=' . urlencode(carbon_get_theme_option('google_maps_api_key')),
+        array(),
+        null
+    );
+    wp_enqueue_script(
+        'engage-frontend-js',
+        get_theme_file_uri( 'assets/js/frontend.js' ),
+        array('jquery'),
+        null
+    );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_frontend_scripts' );
 

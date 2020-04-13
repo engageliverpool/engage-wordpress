@@ -11,6 +11,11 @@ Container::make(
 )->add_fields(
     array(
         Field::make(
+            'text',
+            'google_maps_api_key',
+            'Google Maps API key'
+        ),
+        Field::make(
             'set',
             'suppress_term_archives',
             'Suppress the automatic list of posts at the end of term pages in the following taxonomies:'

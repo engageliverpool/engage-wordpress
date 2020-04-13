@@ -1,5 +1,8 @@
 <?php
 
+use Carbon_Fields\Container;
+use Carbon_Fields\Field;
+
 /**
  * Registers the `event` post type.
  */
@@ -79,3 +82,74 @@ function event_updated_messages( $messages ) {
     return $messages;
 }
 add_filter( 'post_updated_messages', 'event_updated_messages' );
+
+
+Container::make(
+    'post_meta',
+    'Event Details'
+)->where(
+    'post_type', '=', 'event'
+)->add_fields(
+    array(
+        Field::make(
+            'map',
+            'event_location',
+            'Location'
+        )->set_position(
+            53.403005, -2.987465, 14
+        ),
+        Field::make(
+            'checkbox',
+            'event_display_map',
+            'Display map on event page'
+        )->set_option_value(
+            '1'
+        )->set_default_value(
+            '1'
+        ),
+        Field::make(
+            'date',
+            'event_start_date',
+            'Start date'
+        )->set_width(
+            50
+        ),
+        Field::make(
+            'time',
+            'event_start_time',
+            'Start time'
+        )->set_input_format(
+            'H:i',
+            'H:i'
+        )->set_picker_options(
+            array(
+                'time_24hr' => true,
+                'enableSeconds' => false,
+            )
+        )->set_width(
+            50
+        ),
+        Field::make(
+            'date',
+            'event_end_date',
+            'End date'
+        )->set_width(
+            50
+        ),
+        Field::make(
+            'time',
+            'event_end_time',
+            'End time'
+        )->set_input_format(
+            'H:i',
+            'H:i'
+        )->set_picker_options(
+            array(
+                'time_24hr' => true,
+                'enableSeconds' => false,
+            )
+        )->set_width(
+            50
+        ),
+    )
+);

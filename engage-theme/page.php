@@ -1,7 +1,7 @@
 <?php
 
 // page.php
-// Static "pages" (ie: post_type!='post') will be presented via this template.
+// Static "pages" (ie: post_type=='page') will be presented via this template.
 // That includes the front page, if get_option('show_on_front')=='page'.
 // https://developer.wordpress.org/themes/basics/template-hierarchy/
 

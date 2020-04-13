@@ -11,7 +11,8 @@
 // each selector anyway? Maybe it could go in admin-style.scss?
 
 .cf-block__preview,
-.editor-rich-text {
+.editor-rich-text,
+.wp-block {
     font-family: $font-family-base;
     @include font-size($font-size-base);
     font-weight: $font-weight-base;
