@@ -10,6 +10,15 @@ function get_posts_page_url() {
     }
 }
 
+function get_posts_page_path() {
+    if( 'page' == get_option('show_on_front', false) ) {
+        $p = get_post(get_option('page_for_posts'));
+        return '/' . $p->post_name;
+    } else {
+        return '/';
+    }
+}
+
 function get_posts_page_title() {
     $posts_page_id_or_false = get_option('page_for_posts', false);
     if( $posts_page_id_or_false ) {

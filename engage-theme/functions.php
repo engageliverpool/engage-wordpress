@@ -14,6 +14,7 @@ require get_theme_file_path( 'inc/carbon-fields.php' );
 
 require get_theme_file_path( 'inc/functions-general.php' );
 require get_theme_file_path( 'inc/functions-posts.php' );
+require get_theme_file_path( 'inc/functions-taxonomies.php' );
 require get_theme_file_path( 'inc/functions-menus.php' );
 require get_theme_file_path( 'inc/functions-sidebars.php' );
 require get_theme_file_path( 'inc/functions-feature-images.php' );
@@ -33,3 +34,5 @@ require get_theme_file_path( 'widgets/image-list.php' );
 require get_theme_file_path( 'widgets/share-this.php' );
 
 require get_theme_file_path( 'blocks/page-carousel.php' );
+
+require get_theme_file_path( 'admin/theme-options.php' );
