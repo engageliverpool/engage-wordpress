@@ -5,7 +5,7 @@ use Carbon_Fields\Field;
 
 function rename_tags_and_categories_to_topics_and_projects() {
     global $wp_taxonomies;
-    $wp_taxonomies['post_tag']->labels->name = 'Topic';
+    $wp_taxonomies['post_tag']->labels->name = 'Topics';
     $wp_taxonomies['post_tag']->labels->singular_name = 'Topic';
     $wp_taxonomies['post_tag']->labels->search_items = 'Search Topics';
     $wp_taxonomies['post_tag']->labels->popular_items = 'Popular Topics';
@@ -27,7 +27,7 @@ function rename_tags_and_categories_to_topics_and_projects() {
     $wp_taxonomies['post_tag']->labels->menu_name = 'Topics';
     $wp_taxonomies['post_tag']->labels->name_admin_bar = 'post_tag';
 
-    $wp_taxonomies['category']->labels->name = 'Project';
+    $wp_taxonomies['category']->labels->name = 'Projects';
     $wp_taxonomies['category']->labels->singular_name = 'Project';
     $wp_taxonomies['category']->labels->search_items = 'Search Projects';
     $wp_taxonomies['category']->labels->popular_items = 'Popular Projects';
