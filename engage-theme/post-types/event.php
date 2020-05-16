@@ -84,16 +84,118 @@ function event_updated_messages( $messages ) {
 add_filter( 'post_updated_messages', 'event_updated_messages' );
 
 
-function sort_events_by_start($query) {
-    if ($query->is_main_query()) {
-        if ( isset($query->query_vars['post_type']) && ($query->query_vars['post_type'] == 'event') ) {
-            $query->set('meta_key', '_event_start');
-            $query->set('orderby', 'meta_value' );
-            $query->set('order', 'ASC' );
+// https://developer.wordpress.org/reference/functions/get_query_var/#custom-query-vars
+function register_date_query_vars_for_events( $qvars ) {
+    $qvars[] = 'event_month';
+    $qvars[] = 'event_year';
+    return $qvars;
+}
+add_filter( 'query_vars', 'register_date_query_vars_for_events' );
+
+
+// https://codex.wordpress.org/Rewrite_API/add_rewrite_rule
+function register_date_rewrite_rules_for_events( $wp_rewrite ) {
+    add_rewrite_rule(
+        'events/([0-9]{4})/([0-9]{1,2})/?$',
+        'index.php?post_type=event&event_year=$matches[1]&event_month=$matches[2]',
+        'top'
+    );
+    add_rewrite_rule(
+        'events/([0-9]{4})/?$',
+        'index.php?post_type=event&event_year=$matches[1]',
+        'top'
+    );
+}
+add_filter( 'init', 'register_date_rewrite_rules_for_events' );
+
+
+function handle_event_queries($query) {
+    if ( $query->is_post_type_archive('event') && $query->is_main_query() ) {
+        // Sort "event" archives by our custom start_date field.
+        $query->set( 'meta_key', '_event_start' );
+        $query->set( 'orderby', 'meta_value' );
+        $query->set( 'order', 'ASC' );
+        $query->set( 'nopaging', true );
+
+        $year = get_query_var( 'event_year', false );
+        $month = get_query_var( 'event_month', false );
+        $meta_query = array();
+
+        // Limit results to the given month and/or year, if requested.
+        if ( $year ) {
+            if ( $month ) {
+                // First and last day of the requested month.
+                $iso_start_day = sprintf( '%04d-%02d-%02d', $year, $month, 1 );
+                $iso_end_day = date( 'Y-m-t', strtotime($iso_start_day) );
+            } else {
+                // First and last day of the requested year.
+                $iso_start_day = sprintf( '%04d-%02d-%02d', $year, 1, 1 );
+                $iso_end_day = sprintf( '%04d-%02d-%02d', $year, 12, 31 );
+            }
+            $meta_query[] = array(
+                'key' => '_event_start',
+                'type' => 'DATE',
+                'compare' => 'BETWEEN',
+                'value' => array( $iso_start_day, $iso_end_day )
+            );
+        } else {
+            $meta_query[] = array(
+                'key' => '_event_start',
+                'type' => 'DATE',
+                'compare' => '>=',
+                'value' => date('Y-m-d')
+            );
         }
+
+        $query->set( 'meta_query', $meta_query );
     }
 }
-add_action( 'pre_get_posts', 'sort_events_by_start' );
+add_action( 'pre_get_posts', 'handle_event_queries' );
+
+
+// WordPress will automatically generate a title of "Events" for our event
+// archive pages. But we want to add the month and/or year if present.
+function add_dates_to_event_archive_titles( $title_parts ) {
+    global $wp_locale;
+
+    if ( is_post_type_archive('event') ) {
+        $active_year = get_query_var( 'event_year', false );
+        $active_month = get_query_var( 'event_month', false );
+
+        if ( $active_year && $active_month ) {
+            $new = sprintf(
+                '%s %04d',
+                $wp_locale->get_month( (int) $active_month ),
+                $active_year
+            );
+        } elseif ( $active_year ) {
+            $new = sprintf(
+                '%04d',
+                $active_year
+            );
+        }
+
+        if ( isset($new) ) {
+            if ( isset($title_parts['title']) ) {
+                // We’re generating a document title in wp_get_document_title().
+                $sep = apply_filters( 'document_title_separator', '-' );
+                $title_parts['title'] = sprintf(
+                    '%s %s %s',
+                    $title_parts['title'],
+                    $sep,
+                    $new
+                );
+            } else {
+                // We’re generating a page title in wp_title().
+                $title_parts[] = $new;
+            }
+        }
+    }
+
+    return $title_parts;
+}
+add_filter( 'wp_title_parts', 'add_dates_to_event_archive_titles' );
+add_filter( 'document_title_parts', 'add_dates_to_event_archive_titles' );
 
 
 Container::make(
