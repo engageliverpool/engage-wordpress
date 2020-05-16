@@ -20,8 +20,8 @@ require get_theme_file_path( 'inc/functions-menus.php' );
 require get_theme_file_path( 'inc/functions-sidebars.php' );
 require get_theme_file_path( 'inc/functions-feature-images.php' );
 
+require get_theme_file_path( 'inc/posts.php' );
 require get_theme_file_path( 'inc/taxonomies.php' );
-
 require get_theme_file_path( 'inc/menus.php' );
 require get_theme_file_path( 'inc/widgets.php' );
 require get_theme_file_path( 'inc/attachments.php' );
