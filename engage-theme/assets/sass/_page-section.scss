@@ -14,13 +14,13 @@
 }
 
 .page-section__primary {
-    @include media-breakpoint-up('md') {
+    @include media-breakpoint-up('lg') {
         @include make-col(8);
     }
 }
 
 .page-section__secondary {
-    @include media-breakpoint-up('md') {
+    @include media-breakpoint-up('lg') {
         @include make-col(3);
         @include make-col-offset(1);
     }
