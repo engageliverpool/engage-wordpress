@@ -49,25 +49,22 @@ function render_page_carousel_block($fields, $attributes, $inner_blocks) {
         }
 
         $p = get_post( $r['id'] );
-        $slide_css = sprintf(
-            "background-image: url(%s);",
-            esc_attr( wp_get_attachment_url( get_post_thumbnail_id( $p ) ) )
-        );
 
         $slide_content = sprintf(
+            '%1$s' . "\n" .
             '<div>' . "\n" .
-            '<small>%1$s</small>' . "\n" .
-            '<h2>%2$s</h2>' . "\n" .
+            '<small>%2$s</small>' . "\n" .
+            '<h2>%3$s</h2>' . "\n" .
             '</div>' . "\n",
+            get_the_post_thumbnail( $p, 'feature' ),
             get_the_ancestor_title( $p ),
             no_widow( get_the_title( $p ) )
         );
 
         echo sprintf(
-            '<a href="%1$s" class="%2$s" style="%3$s">%4$s</a>' . "\n",
+            '<a href="%1$s" class="%2$s">%3$s</a>' . "\n",
             get_the_permalink( $p ),
             $slide_classes,
-            $slide_css,
             $slide_content
         );
 

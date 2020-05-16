@@ -25,3 +25,13 @@
         @include make-col-offset(1);
     }
 }
+
+// Edge-to-edge "feature" sections, at narrowest viewport.
+.page-section--feature {
+    @include media-breakpoint-down('xs') {
+        .page-section__only {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}

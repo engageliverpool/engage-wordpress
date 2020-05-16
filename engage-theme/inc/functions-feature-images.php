@@ -1,21 +1,7 @@
 <?php
 
 function get_the_feature_image() {
-    $html = '';
-
-    if ( has_post_thumbnail() ) {
-        $css = sprintf(
-            "background-image: url(%s);",
-            esc_attr( wp_get_attachment_url( get_post_thumbnail_id() ) )
-        );
-        $html = sprintf(
-            '<div class="feature-image" style="%s">%s</div>',
-            $css,
-            get_the_post_thumbnail()
-        );
-    }
-
-    return $html;
+    return get_the_post_thumbnail( null, 'feature' );
 }
 
 function get_the_feature_carousel() {
@@ -43,7 +29,7 @@ function the_feature_section() {
     }
 
     if ( $feature_html ) {
-        $html .= '<div class="page-section">' . "\n";
+        $html .= '<div class="page-section page-section--feature">' . "\n";
         $html .= '<div class="page-section__only">' . "\n";
         $html .= $feature_html;
         $html .= '</div>' . "\n";
