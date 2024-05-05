@@ -78,4 +78,8 @@ wp plugin install --activate tag-list-widget
 
 wp user update admin --display_name="Joe Admin"
 
+# Note the leading underscore on "_google_maps_api_key".
+# Carbon Fields adds this underscore when it saves theme options.
+# wp option update "_google_maps_api_key" "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
 wp rewrite flush

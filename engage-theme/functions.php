@@ -1,5 +1,11 @@
 <?php
 
+function debug( $array ) {
+    echo '<pre>';
+    echo esc_html( print_r( $array, true ) );
+    echo '</pre>';
+}
+
 // Load Composer packages
 require get_parent_theme_file_path( '/vendor/autoload.php' );
 
